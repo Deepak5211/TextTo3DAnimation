@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Step 1: Convert Hindi Text to Speech
 def text_to_speech(text, output_file="static/output.mp3"):
-    audio = generate(text=text, voice="hindi")  # Use ElevenLabs AI for realistic Hindi voice
+    audio = generate(text=text, voice="hindi")  # ElevenLabs AI for realistic Hindi voice
     with open(output_file, "wb") as f:
         f.write(audio)
     return output_file
@@ -16,7 +16,7 @@ def text_to_speech(text, output_file="static/output.mp3"):
 def create_animation(audio_file, output_video="static/animation.mp4"):
     img = ImageClip("static/cartoon_bg.jpg").set_duration(5)
 
-    # Add AI-generated voice-over
+    # Ensure moviepy audio is correctly loaded
     audio = AudioFileClip(audio_file)
     video = img.set_audio(audio)
 
