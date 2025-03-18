@@ -2,6 +2,7 @@ import pyttsx3
 import time
 import os
 import moviepy.editor as mp
+from moviepy.editor import ImageClip, AudioFileClip
 from flask import Flask, request, render_template
 from elevenlabs import generate, play
 
@@ -16,12 +17,15 @@ def text_to_speech(text, output_file="static/output.mp3"):
 
 # Step 2: Generate Simple Animation (Placeholder for 3D Animation Integration)
 def create_animation(audio_file, output_video="static/animation.mp4"):
-    img = mp.ImageClip("static/cartoon_bg.jpg").set_duration(5)
+    img = ImageClip("static/cartoon_bg.jpg").set_duration(5)
     
-    # Add AI-generated voice-over
-    audio = mp.AudioFileClip(audio_file)
+    # Ensure moviepy audio is correctly loaded
+    audio = AudioFileClip(audio_file)
     video = img.set_audio(audio)
+    
+    # Write the video file
     video.write_videofile(output_video, codec="libx264", fps=24)
+    
     return output_video
 
 @app.route('/', methods=['GET', 'POST'])
