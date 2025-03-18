@@ -1,5 +1,6 @@
 flask
 pyttsx3
 moviepy
+imageio[ffmpeg]
 elevenlabs
 gunicorn
